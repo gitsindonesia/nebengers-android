@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dimens_300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/rounded_dark_green_back"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/dimens_1dp" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_white_back"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/grad_green"
+            android:padding="@dimen/dimens_5dp" >
+
+            <TextView
+                android:id="@+id/txt_dlLabel_det"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Reply To "
+                android:textColor="#fff"
+                android:textSize="@dimen/text_20sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/grad_green" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dimens_10dp" >
+
+            <EditText
+                android:id="@+id/inp_stat"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_80dp"
+                android:ems="10"
+                android:gravity="top|left"
+                android:lines="5"
+                android:singleLine="false"
+                android:textSize="@dimen/text_14sp" />
+            
+             <TextView
+                android:id="@+id/tv_Limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:enabled="false"
+                android:text="140" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimens_5dp"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/dl_tweet_det"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_bg_btn"
+                    android:padding="@dimen/dimens_5dp"
+                    android:text="Tweet"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/text_18sp" />
+
+                <Button
+                    android:id="@+id/dl_cancel_det"
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_bg_btn"
+                    android:padding="@dimen/dimens_5dp"
+                    android:text="Cancel"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/text_18sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

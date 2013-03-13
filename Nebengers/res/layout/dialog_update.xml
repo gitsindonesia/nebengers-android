@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/dimens_1dp" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dimens_10dp" >
+
+            <TextView
+                android:id="@+id/txt_tujuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rute"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/text_12sp" />
+
+            <EditText
+                android:id="@+id/inp_tujuan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimens_5dp"
+                android:ems="10"
+                android:gravity="top|left"
+                android:hint="cth : Pondok Bambu-Casablanca-Sudirman"
+                android:maxLength="140"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/txt_jam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hari dan Jam Estimasi"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/text_12sp" />
+
+            <EditText
+                android:id="@+id/inp_jam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimens_5dp"
+                android:ems="10"
+                android:gravity="top|left"
+                android:hint="cth : Senin 07:30"
+                android:maxLength="140"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/txt_term"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ketentuan | Seat Sisa"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/text_12sp" />
+
+            <EditText
+                android:id="@+id/inp_term"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimens_5dp"
+                android:ems="10"
+                android:gravity="top|left"
+                android:hint="cth : siap gantian setir | sisa seat 3"
+                android:maxLength="140"
+                android:singleLine="true" />
+
+            <RadioGroup
+                android:id="@+id/radioHash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <RadioButton
+                    android:id="@+id/radioCari"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="#CariTebengan"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <RadioButton
+                    android:id="@+id/radioBeri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="#BeriTebengan"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <RadioButton
+                    android:id="@+id/radioSharing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="#ShareTaxi"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Tweet"
+                android:textColor="@color/dark_blue"
+                android:textSize="@dimen/text_12sp" />
+
+            <TextView
+                android:id="@+id/inp_stat"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimens_5dp"
+                android:background="@drawable/shadow_border"
+                android:gravity="top|left"
+                android:padding="@dimen/dimens_10dp"
+                android:textColor="@color/dark_green" />
+
+            <TextView
+                android:id="@+id/tv_Limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:enabled="false"
+                android:text="140" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

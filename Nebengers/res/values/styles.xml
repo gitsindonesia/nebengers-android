@@ -1,0 +1,125 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppTheme" parent="Theme.Sherlock.Light.DarkActionBar">
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textSize">14sp</item>
+        <item name="vpiTabPageIndicatorStyle">@style/TabPageIndicator</item>
+    </style>
+    
+    
+    <style name="TabPageIndicator" parent="Widget">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/vpi_green_tab_indicator</item>
+        <item name="android:paddingLeft">@dimen/dimens_5dp</item>
+        <item name="android:paddingRight">@dimen/dimens_5dp</item>
+        <item name="android:paddingTop">@dimen/dimens_10dp</item>
+        <item name="android:paddingBottom">@dimen/dimens_10dp</item>
+        <item name="android:textAppearance">@style/Text.TabPageIndicator</item>
+        <item name="android:textSize">@dimen/text_14sp</item>
+        <item name="android:maxLines">1</item>
+    </style>
+    
+    <style name="Text.TabPageIndicator" parent="Widget">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/dark_blue</item>
+    </style>
+    
+    <style name="ThemeWithCorners" parent="Theme.Sherlock.Light.Dialog">
+        <item name="android:windowBackground">@drawable/rounded_dialog</item>
+    </style>
+
+    <style name="MarLR_50dp">
+        <item name="android:layout_marginRight">@dimen/dimens_50dp</item>
+        <item name="android:layout_marginLeft">@dimen/dimens_50dp</item>
+    </style>
+
+    <style name="MarTB_50dp">
+        <item name="android:layout_marginTop">@dimen/dimens_50dp</item>
+        <item name="android:layout_marginBottom">@dimen/dimens_50dp</item>
+    </style>
+
+    <style name="Mar_50dp">
+        <item name="android:layout_margin">@dimen/dimens_50dp</item>
+    </style>
+
+    <style name="Text_Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#97D600</item>
+        <item name="android:textSize">@dimen/text_22sp</item>
+        <item name="android:layout_marginTop">@dimen/dimens_5dp</item>
+        <item name="android:layout_marginBottom">@dimen/dimens_5dp</item>
+    </style>
+
+    <style name="layout_wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="layout_fill">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+
+    <style name="text_title">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textSize">@dimen/text_18sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="layout_f_w">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="h_line">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:background">@color/dark_blue</item>
+    </style>
+
+    <style name="indicator_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/dimens_5dp</item>
+        <item name="android:background">@color/dark_blue</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="Text_Title_Dash">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">@dimen/text_22sp</item>
+    </style>
+
+    <style name="Img_Icon">
+        <item name="android:layout_width">@dimen/dimens_25dp</item>
+        <item name="android:layout_height">@dimen/dimens_25dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginRight">@dimen/dimens_40dp</item>
+    </style>
+
+    <style name="Img_Dashb">
+        <item name="android:layout_width">@dimen/dimens_100dp</item>
+        <item name="android:layout_height">@dimen/dimens_100dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="LL_Dashb_Back">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">@dimen/dimens_10dp</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_margin">@dimen/dimens_5dp</item>
+        <item name="android:background">@color/dark_blue</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+</resources>

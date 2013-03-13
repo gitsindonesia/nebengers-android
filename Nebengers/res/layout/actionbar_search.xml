@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical|fill_horizontal" >
+
+    <EditText
+        android:id="@+id/txt_search"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ic_home"
+        android:hint="Search . . . "
+        android:imeOptions="actionSearch"
+        android:lines="1"
+        android:singleLine="true"
+        android:textColor="#fff" />
+
+</RelativeLayout>

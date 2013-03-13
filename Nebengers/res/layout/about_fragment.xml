@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <WebView
+        android:id="@+id/html_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+    
+    <!-- <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:padding="10dp" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:text="About :"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:text="Nebengers adalah forum tebengan berbentuk komunitas; yang terdiri dari pencari tebengan, pemberi tebengan, dan berbagi tumpangan taksi." />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:text="Aplikasi dibuat oleh :"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:text="GITS Indonesia" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:text="www.gits.co.id" />
+        </LinearLayout>
+    </ScrollView> -->
+
+</LinearLayout>
