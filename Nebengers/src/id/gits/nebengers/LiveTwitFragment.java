@@ -1,5 +1,6 @@
 package id.gits.nebengers;
 
+import id.gits.nebengers.dao.SearchAPIDao;
 import id.gits.nebengers.dao.TweetDao;
 import id.gits.nebengers.utils.Utils;
 import id.gits.nebengers.utils.imageloader.ImageLoader;
@@ -55,7 +56,7 @@ public class LiveTwitFragment extends SherlockListFragment {
 	private static final String DATE = "date";
 	private static final String ID = "id";
 	private static final String TWIT_URI = "http://search.twitter.com/search.json";
-	public String mHashtag;
+	private String mHashtag;
 	SearchAPIDao searchAPIDao;
 	MyListAdapter adapter;
 
@@ -126,8 +127,7 @@ public class LiveTwitFragment extends SherlockListFragment {
 
 					public void onRefresh() {
 						// Do work to refresh the list here.
-						String url_refresh = url
-								+ searchAPIDao.getRefresh_url();
+						String url_refresh = TWIT_URI + searchAPIDao.getRefresh_url();
 						refreshTask = new RefreshJsonStringTask();
 						refreshTask.execute(url_refresh);
 					}
@@ -276,6 +276,8 @@ public class LiveTwitFragment extends SherlockListFragment {
 	private class GetJsonStringTask extends AsyncTask<String, Void, String> {
 		@Override
 		protected void onPreExecute() {
+			pbEmpty.setVisibility(View.VISIBLE);
+			tvEmpty.setText("Mencari...");
 			listTweet.clear();
 			adapter.notifyDataSetChanged();
 		}
@@ -384,51 +386,6 @@ public class LiveTwitFragment extends SherlockListFragment {
 		protected void onCancelled() {
 			((PullAndLoadListView) getListView()).onLoadMoreComplete();
 		}
-	}
-
-	class SearchAPIDao {
-		private String max_id_str;
-		private String next_page;
-		private String previous_page;
-		private String query;
-		private String page;
-		private String results_per_page;
-		private String refresh_url;
-
-		private List<TweetDao> results;
-
-		public String getMax_id_str() {
-			return max_id_str;
-		}
-
-		public String getNext_page() {
-			return next_page;
-		}
-
-		public String getPrevious_page() {
-			return previous_page;
-		}
-
-		public String getQuery() {
-			return query;
-		}
-
-		public String getPage() {
-			return page;
-		}
-
-		public String getResults_per_page() {
-			return results_per_page;
-		}
-
-		public String getRefresh_url() {
-			return refresh_url;
-		}
-
-		public List<TweetDao> getResults() {
-			return results;
-		}
-
 	}
 
 	public void parseJsonTweet(String response) throws JSONException {

@@ -8,6 +8,7 @@
         android:id="@+id/ic_home"
         android:layout_width="35dp"
         android:layout_height="35dp"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/dimens_5dp"
         android:layout_marginRight="@dimen/dimens_5dp"
         android:src="@drawable/ic_launchers" />
@@ -16,7 +17,9 @@
         android:id="@+id/txt_search"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@id/ic_home"
+        android:background="@drawable/edit_text_holo_light"
         android:hint="Search . . . "
         android:imeOptions="actionSearch"
         android:lines="1"
