@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,9 @@ public class LiveTwitFragment extends SherlockListFragment {
 	TweetDao tweetDao;
 	Dialog dialog;
 	ProgressDialog progressDialog;
+	TextView tvEmpty;
+	ProgressBar pbEmpty;
+	
 	private static final String FROM = "from";
 	private static final String NAME = "name";
 	private static final String TEXT = "text";
@@ -54,7 +58,7 @@ public class LiveTwitFragment extends SherlockListFragment {
 	public String mHashtag;
 	SearchAPIDao searchAPIDao;
 	MyListAdapter adapter;
-	
+
 	public ImageLoader imageLoader;
 
 	public boolean checkInternetConnection() {
@@ -64,7 +68,7 @@ public class LiveTwitFragment extends SherlockListFragment {
 				&& conMgr.getActiveNetworkInfo().isAvailable()
 				&& conMgr.getActiveNetworkInfo().isConnected()) {
 			return true;
-		} else { 
+		} else {
 			return false;
 		}
 	}
@@ -85,6 +89,8 @@ public class LiveTwitFragment extends SherlockListFragment {
 			Bundle savedInstanceState) {
 
 		View v = inflater.inflate(R.layout.activity_tweet_view, null);
+		pbEmpty = (ProgressBar) v.findViewById(R.id.empty_progress);
+		tvEmpty = (TextView) v.findViewById(R.id.empty_text);
 		initListView();
 		return v;
 	}
@@ -116,37 +122,40 @@ public class LiveTwitFragment extends SherlockListFragment {
 		 */
 
 		((PullAndLoadListView) getListView())
-		.setOnRefreshListener(new OnRefreshListener() {
+				.setOnRefreshListener(new OnRefreshListener() {
 
-			public void onRefresh() {
-				// Do work to refresh the list here.
-				String url_refresh =  url + searchAPIDao.getRefresh_url(); 
-				refreshTask = new RefreshJsonStringTask();
-				refreshTask.execute(url_refresh);
-			}
-		});
-		
+					public void onRefresh() {
+						// Do work to refresh the list here.
+						String url_refresh = url
+								+ searchAPIDao.getRefresh_url();
+						refreshTask = new RefreshJsonStringTask();
+						refreshTask.execute(url_refresh);
+					}
+				});
+
 		((PullAndLoadListView) getListView())
-		.setOnLoadMoreListener(new OnLoadMoreListener() {
+				.setOnLoadMoreListener(new OnLoadMoreListener() {
 
-			public void onLoadMore() {
-				// Do the work to load more items at the end of list
-				// here
+					public void onLoadMore() {
+						// Do the work to load more items at the end of list
+						// here
 
-				if(mHashtag.equals("ShareTaxi")){
-					((PullAndLoadListView) getListView()).onLoadMoreComplete();
-				}else{
+						if (mHashtag.equals("ShareTaxi")) {
+							((PullAndLoadListView) getListView())
+									.onLoadMoreComplete();
+						} else {
 
-				if(searchAPIDao != null){
-					loadMoreData = new LoadMoreDataTask();
-					String load_more_url;
-					load_more_url = TWIT_URI + searchAPIDao.getNext_page();
-					loadMoreData.execute(load_more_url);
-				}
+							if (searchAPIDao != null) {
+								loadMoreData = new LoadMoreDataTask();
+								String load_more_url;
+								load_more_url = TWIT_URI
+										+ searchAPIDao.getNext_page();
+								loadMoreData.execute(load_more_url);
+							}
 
-				}
-			}
-		});
+						}
+					}
+				});
 
 	}
 
@@ -170,27 +179,27 @@ public class LiveTwitFragment extends SherlockListFragment {
 		startActivity(intent);
 	}
 
-	public void clearData(String search){
+	public void initData(String search) {
+		String searchTxt = "";
 		try {
-			mHashtag = getmHashtag() + "%20" + URLEncoder.encode(search.trim(),"utf-8");
+			if (search != null && search.length() > 0)
+				searchTxt = "%20" + URLEncoder.encode(search.trim(), "utf-8");
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		String urls = TWIT_URI + "?q=%23" + mHashtag + "&rpp=50";
-		
+
+		String urls = TWIT_URI + "?q=%23" + mHashtag + searchTxt + "&rpp=50";
+
 		tweetTask = new GetJsonStringTask();
 		tweetTask.execute(urls);
-		
+
 	}
-	
+
 	private void initListView() {
 		adapter = new MyListAdapter(getActivity(), listTweet);
 		setListAdapter(adapter);
 
 	}
-
 
 	private class MyListAdapter extends BaseAdapter {
 		List<TweetDao> lists = new ArrayList<TweetDao>();
@@ -198,8 +207,10 @@ public class LiveTwitFragment extends SherlockListFragment {
 		private ViewHolder holder;
 
 		public MyListAdapter(Context context, List<TweetDao> list) {
-			/*super(context, list, R.layout.row_tweet_list, new String[] {},
-					new int[] {});*/
+			/*
+			 * super(context, list, R.layout.row_tweet_list, new String[] {},
+			 * new int[] {});
+			 */
 			super();
 			this.inflater = LayoutInflater.from(context);
 			this.lists = list;
@@ -241,12 +252,13 @@ public class LiveTwitFragment extends SherlockListFragment {
 
 			Date d = new Date(lists.get(position).getCreatedAt());
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			holder.tvDate.setText(Utils.DiffDateToStringFromTime(sdf.format(d)));
+			holder.tvDate
+					.setText(Utils.DiffDateToStringFromTime(sdf.format(d)));
 
 			// Category Image
 			String urlImage = lists.get(position).getProfileImageUrl();
 			holder.image.setTag(urlImage);
-			
+
 			imageLoader.DisplayImage(urlImage, getActivity(), holder.image);
 
 			return vi;
@@ -264,7 +276,8 @@ public class LiveTwitFragment extends SherlockListFragment {
 	private class GetJsonStringTask extends AsyncTask<String, Void, String> {
 		@Override
 		protected void onPreExecute() {
-			
+			listTweet.clear();
+			adapter.notifyDataSetChanged();
 		}
 
 		@Override
@@ -283,13 +296,17 @@ public class LiveTwitFragment extends SherlockListFragment {
 		@Override
 		protected void onPostExecute(String results) {
 			try {
-				listTweet.clear();
-
 				parseJsonTweet(results);
-				//initListView();
+				//if empty, show no result
+				if(listTweet.isEmpty()){
+					pbEmpty.setVisibility(View.GONE);
+					tvEmpty.setText("Tidak ada hasil");
+				}
 			} catch (Exception e) {
-/*				Toast.makeText(getActivity(), "Error Load Tweet",
-						Toast.LENGTH_LONG).show();*/
+				/*
+				 * Toast.makeText(getActivity(), "Error Load Tweet",
+				 * Toast.LENGTH_LONG).show();
+				 */
 			}
 		}
 	}
@@ -319,8 +336,7 @@ public class LiveTwitFragment extends SherlockListFragment {
 				parseJsonTweet(results);
 				adapter.notifyDataSetChanged();
 
-
-				//initListView();
+				// initListView();
 			} catch (Exception e) {
 				Toast.makeText(getActivity(), "Error Load Tweet",
 						Toast.LENGTH_LONG).show();
@@ -356,7 +372,7 @@ public class LiveTwitFragment extends SherlockListFragment {
 		protected void onPostExecute(String results) {
 			try {
 				parseJsonTweet(results);
-				//listTweet.add(tweetDao);
+				// listTweet.add(tweetDao);
 			} catch (Exception e) {
 				Toast.makeText(getActivity(), "Error Load Tweet",
 						Toast.LENGTH_LONG).show();
@@ -418,22 +434,22 @@ public class LiveTwitFragment extends SherlockListFragment {
 	public void parseJsonTweet(String response) throws JSONException {
 		Gson gson = new Gson();
 		searchAPIDao = gson.fromJson(response, SearchAPIDao.class);
-		//listTweet.addAll(searchAPIDao.getResults());
+		// listTweet.addAll(searchAPIDao.getResults());
 
-		int i=0;
-		/*while(jika i masih lebih kecil dari ukuran array result){
-			if(yg ngetweet nebengers){
-				masukkan isi dari array result ke listTweet
-			}
-			i++;
-		}*/
+		int i = 0;
+		/*
+		 * while(jika i masih lebih kecil dari ukuran array result){ if(yg
+		 * ngetweet nebengers){ masukkan isi dari array result ke listTweet }
+		 * i++; }
+		 */
 
 		while (i < searchAPIDao.getResults().size()) {
-			if(searchAPIDao.getResults().get(i).getFromUser().equals("nebengers")){
+			if (searchAPIDao.getResults().get(i).getFromUser()
+					.equals("nebengers")) {
 				listTweet.add(searchAPIDao.getResults().get(i));
 			}
 			i++;
-		} 
+		}
 
 		adapter.notifyDataSetChanged();
 	}

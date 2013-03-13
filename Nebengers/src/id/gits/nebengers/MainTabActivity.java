@@ -37,7 +37,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.viewpagerindicator.PageIndicator;
 import com.viewpagerindicator.TabPageIndicator;
 
-public class MainTabFragment extends SherlockFragmentActivity {
+public class MainTabActivity extends SherlockFragmentActivity {
 	private static final String[] CONTENT = new String[] { "#CariTebengan",
 		"#BeriTebengan", "#ShareTaxi" };
 	List<LiveTwitFragment> listFragment = new ArrayList<LiveTwitFragment>();
@@ -145,7 +145,7 @@ public class MainTabFragment extends SherlockFragmentActivity {
 		 */
 
 		case 1:
-			Intent intent = new Intent(MainTabFragment.this,
+			Intent intent = new Intent(MainTabActivity.this,
 					AboutActivity.class);
 			startActivity(intent);
 			break;
@@ -155,7 +155,7 @@ public class MainTabFragment extends SherlockFragmentActivity {
 
 				tweetMode = TWEETMODE_TWEET;
 
-				intent = new Intent(MainTabFragment.this, TweetActivity.class);
+				intent = new Intent(MainTabActivity.this, TweetActivity.class);
 				intent.putExtra(PAGE_POS, pagePosition);
 				startActivity(intent);
 
@@ -166,7 +166,7 @@ public class MainTabFragment extends SherlockFragmentActivity {
 					mTwitter.authorize();
 
 				} else {
-					Toast.makeText(MainTabFragment.this,
+					Toast.makeText(MainTabActivity.this,
 							"No Internet Connection / Disconnected",
 							Toast.LENGTH_SHORT).show();
 				}
@@ -210,12 +210,9 @@ public class MainTabFragment extends SherlockFragmentActivity {
 
 					search = txtSearch.getText().toString();
 
-					Toast.makeText(MainTabFragment.this, search,
-							Toast.LENGTH_SHORT).show();
-
-					((LiveTwitFragment) adapter.getItem(0)).clearData(search);
-					((LiveTwitFragment) adapter.getItem(1)).clearData(search);
-					((LiveTwitFragment) adapter.getItem(2)).clearData(search);
+					((LiveTwitFragment) adapter.getItem(0)).initData(search);
+					((LiveTwitFragment) adapter.getItem(1)).initData(search);
+					((LiveTwitFragment) adapter.getItem(2)).initData(search);
 					
 					InputMethodManager imm = (InputMethodManager)getSystemService(
 						      Context.INPUT_METHOD_SERVICE);
@@ -422,7 +419,7 @@ public class MainTabFragment extends SherlockFragmentActivity {
 							followUsers(screenName);
 
 					} else {
-						Toast.makeText(MainTabFragment.this,
+						Toast.makeText(MainTabActivity.this,
 								"No Internet Connection / Disconnected",
 								Toast.LENGTH_SHORT).show();
 					}
@@ -444,7 +441,7 @@ public class MainTabFragment extends SherlockFragmentActivity {
 						if (followUsers)
 							followUsers(screenName);
 					} else {
-						Toast.makeText(MainTabFragment.this,
+						Toast.makeText(MainTabActivity.this,
 								"No Internet Connection / Disconnected",
 								Toast.LENGTH_SHORT).show();
 					}
@@ -453,7 +450,7 @@ public class MainTabFragment extends SherlockFragmentActivity {
 				dialog.cancel();
 
 				if (tweetMode == TWEETMODE_TWEET) {
-					Intent intent = new Intent(MainTabFragment.this,
+					Intent intent = new Intent(MainTabActivity.this,
 							TweetActivity.class);
 					intent.putExtra(PAGE_POS, pagePosition);
 					startActivity(intent);
@@ -469,7 +466,7 @@ public class MainTabFragment extends SherlockFragmentActivity {
 						if (postToTwitter)
 							postToTwitter(status);
 					} else {
-						Toast.makeText(MainTabFragment.this,
+						Toast.makeText(MainTabActivity.this,
 								"No Internet Connection / Disconnected",
 								Toast.LENGTH_SHORT).show();
 					}
@@ -487,7 +484,7 @@ public class MainTabFragment extends SherlockFragmentActivity {
 				dialog.cancel();
 
 				if (tweetMode == TWEETMODE_TWEET) {
-					Intent intent = new Intent(MainTabFragment.this,
+					Intent intent = new Intent(MainTabActivity.this,
 							TweetActivity.class);
 					intent.putExtra(PAGE_POS, pagePosition);
 					startActivity(intent);
@@ -506,7 +503,7 @@ public class MainTabFragment extends SherlockFragmentActivity {
 							postToTwitter(status);
 
 					} else {
-						Toast.makeText(MainTabFragment.this,
+						Toast.makeText(MainTabActivity.this,
 								"No Internet Connection / Disconnected",
 								Toast.LENGTH_SHORT).show();
 					}
@@ -569,7 +566,7 @@ public class MainTabFragment extends SherlockFragmentActivity {
 			String text = (msg.what == 0) ? "Posted to Twitter"
 					: "Post to Twitter failed";
 
-			Toast.makeText(MainTabFragment.this, text, Toast.LENGTH_SHORT)
+			Toast.makeText(MainTabActivity.this, text, Toast.LENGTH_SHORT)
 			.show();
 		}
 	};
@@ -582,7 +579,7 @@ public class MainTabFragment extends SherlockFragmentActivity {
 
 			postToTwitter = true;
 
-			Toast.makeText(MainTabFragment.this,
+			Toast.makeText(MainTabActivity.this,
 					"Connected to Twitter as " + username, Toast.LENGTH_LONG)
 					.show();
 			showDialogFollow();
@@ -592,7 +589,7 @@ public class MainTabFragment extends SherlockFragmentActivity {
 		public void onError(String value) {
 			mTwitterBtn.setChecked(false);
 
-			Toast.makeText(MainTabFragment.this, "Twitter connection failed",
+			Toast.makeText(MainTabActivity.this, "Twitter connection failed",
 					Toast.LENGTH_LONG).show();
 		}
 	};

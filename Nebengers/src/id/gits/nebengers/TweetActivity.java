@@ -273,7 +273,7 @@ public class TweetActivity extends SherlockActivity {
 			Toast.makeText(TweetActivity.this, text, Toast.LENGTH_SHORT)
 			.show();
 
-			startActivity(new Intent(TweetActivity.this, MainTabFragment.class));
+			startActivity(new Intent(TweetActivity.this, MainTabActivity.class));
 		}
 	};
 
